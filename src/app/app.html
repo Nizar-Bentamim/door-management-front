@@ -1,0 +1,19 @@
+<nav class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-800">Door Management System</h1>
+      <div class="flex gap-4">
+        <a routerLink="/doors" routerLinkActive="text-blue-600" class="text-gray-700 hover:text-blue-600 font-medium">
+          Doors
+        </a>
+        <a routerLink="/users" routerLinkActive="text-blue-600" class="text-gray-700 hover:text-blue-600 font-medium">
+          Users
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="min-h-screen bg-gray-50">
+  <router-outlet />
+</main>

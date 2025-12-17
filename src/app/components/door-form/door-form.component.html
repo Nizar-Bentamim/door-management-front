@@ -1,0 +1,81 @@
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+  <a routerLink="/doors" class="text-blue-600 hover:text-blue-800 mb-4 inline-block">← Back to Doors</a>
+
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Create New Door</h1>
+
+    @if (error()) {
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        {{ error() }}
+      </div>
+    }
+
+    <form [formGroup]="doorForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+          Name *
+        </label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [class.border-red-500]="name?.invalid && name?.touched"
+        />
+        @if (name?.invalid && name?.touched) {
+          <p class="mt-1 text-sm text-red-600">
+            @if (name?.errors?.['required']) {
+              Name is required.
+            } @else if (name?.errors?.['minlength']) {
+              Name must be at least 2 characters.
+            }
+          </p>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
+          Location *
+        </label>
+        <input
+          type="text"
+          id="location"
+          formControlName="location"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          [class.border-red-500]="location?.invalid && location?.touched"
+        />
+        @if (location?.invalid && location?.touched) {
+          <p class="mt-1 text-sm text-red-600">
+            @if (location?.errors?.['required']) {
+              Location is required.
+            } @else if (location?.errors?.['minlength']) {
+              Location must be at least 2 characters.
+            }
+          </p>
+        }
+      </div>
+
+      <div class="flex gap-4">
+        <button
+          type="submit"
+          [disabled]="loading() || doorForm.invalid"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          @if (loading()) {
+            <span class="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></span>
+          }
+          Create Door
+        </button>
+        <button
+          type="button"
+          (click)="cancel()"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg transition"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
